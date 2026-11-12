@@ -282,7 +282,7 @@
             <div class="absolute -inset-1 bg-gradient-to-r from-lilac to-pink rounded-full blur opacity-40 group-hover:opacity-75 transition duration-500"></div>
             <div class="relative">
               <div class="w-40 h-40 md:w-48 md:h-48 rounded-full avatar-border-double shadow-[0_0_30px_rgba(205,182,245,0.45)] bg-gradient-to-b from-[#2a1a3a] to-[#120a1c] overflow-hidden flex items-center justify-center p-2 transform group-hover:scale-105 transition-transform duration-300">
-                <img src="E:\web\avatar.jpg" alt="Neh Avatar" class="w-full h-full object-cover rounded-full">
+                <img src="web\avatar.jpg" alt="Neh Avatar" class="w-full h-full object-cover rounded-full">
               </div>
             </div>
             <span class="absolute bottom-2 right-2 flex h-5 w-5">
@@ -543,8 +543,8 @@
        nên nhạc sẽ bắt đầu ngay khi người xem chạm/bấm vào trang lần đầu
        (hoặc bấm nút 🎵 ở góc phải dưới).
        ========================================================== */
-    const MUSIC_SRC = String.raw`E:\web\doi.mp3`;
-    const MUSIC_SRC2 = String.raw`E:\web\chill.mp3`;
+    const MUSIC_SRC = String.raw`web\doi.mp3`;
+    const MUSIC_SRC2 = String.raw`web\chill.mp3`;
     const MUSIC_VOLUME = 0.5;     // âm lượng ban đầu: 0 (im) → 1 (to nhất)
 
     (function setupMusic() {
@@ -800,7 +800,7 @@
        - Để trống thì nền chỉ có màu tím đậm.
        Ví dụ:  const BACKGROUND_SRC = String.raw`E:\web\background.mp4`;
        ========================================================== */
-    const BACKGROUND_SRC = String.raw`E:\web\background.mp4`;
+    const BACKGROUND_SRC = String.raw`web\background.mp4`;
 
     (function setupHomeBackground() {
       const src = BACKGROUND_SRC.trim().replace(/\\/g, '/');
@@ -834,8 +834,8 @@
        ========================================================== */
     const ABOUT_GIFS = [
       String.raw`web\gilbert.mp4`, // Tấm 1 — ví dụ: String.raw`E:\web\violet1.gif`
-      String.raw`letter.mp4`, // Tấm 2 — ví dụ: String.raw`E:\web\violet2.gif`
-      String.raw`violet.mp4`, // Tấm 3 — ví dụ: String.raw`E:\web\violet3.gif`
+      String.raw`web\letter.mp4`, // Tấm 2 — ví dụ: String.raw`E:\web\violet2.gif`
+      String.rawr`web\violet.mp4`, // Tấm 3 — ví dụ: String.raw`E:\web\violet3.gif`
     ];
 
     (function setupAboutGifs() {
@@ -902,11 +902,11 @@
          ];
        ========================================================== */
     const COSPLAY_IMAGES = [
-      String.raw`E:\web\Cosplay\cos1.jpg`,
-      String.raw`E:\web\Cosplay\cos5.jpg`,
-      String.raw`E:\web\Cosplay\cos3.jpg`,
-      String.raw`E:\web\Cosplay\cos4.jpg`,
-      String.raw`E:\web\Cosplay\cos2.jpg`,
+      String.raw`web\Cosplay\cos1.jpg`,
+      String.raw`web\Cosplay\cos5.jpg`,
+      String.raw`web\Cosplay\cos3.jpg`,
+      String.raw`web\Cosplay\cos4.jpg`,
+      String.raw`web\Cosplay\cos2.jpg`,
     ];
 
     let nudgeCosplayRing = null;
@@ -1325,7 +1325,7 @@
     }
     sizeLetterCanvas();
     window.addEventListener('resize', sizeLetterCanvas);
-    const EASTER_EGG_IMAGE = String.raw`E:\web\holdhand.jpg`;
+    const EASTER_EGG_IMAGE = String.raw`web\holdhand.jpg`;
     let eggImg = null, eggReady = false;
     (function loadEasterEgg() {
       const src = EASTER_EGG_IMAGE.trim().replace(/\\/g, '/');
