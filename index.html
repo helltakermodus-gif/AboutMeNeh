@@ -1,0 +1,1749 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neh | Profile</title>
+  
+  <!-- Google Font: Be Vietnam Pro -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            plum: '#1d1228',
+            lilac: '#cdb6f5',
+            pink: '#ff9fc6',
+            cream: '#fbf6ff',
+          },
+          fontFamily: {
+            sans: ['Be Vietnam Pro', 'sans-serif'],
+          },
+          keyframes: {
+            pulseGlow: {
+              '0%, 100%': { boxShadow: '0 0 20px rgba(205, 182, 245, 0.4)' },
+              '50%': { boxShadow: '0 0 35px rgba(255, 159, 198, 0.7)' },
+            },
+            floatSlow: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' },
+            }
+          },
+          animation: {
+            'pulse-glow': 'pulseGlow 4s infinite ease-in-out',
+            'float': 'floatSlow 5s infinite ease-in-out',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #1d1228;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cdb6f5;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #ff9fc6;
+    }
+
+    /* Double Lilac Border for Avatar */
+    .avatar-border-double {
+      border: 6px double #cdb6f5;
+    }
+
+    /* Accessibility outline style */
+    a:focus-visible, button:focus-visible {
+      outline: 3px solid #ff9fc6;
+      outline-offset: 3px;
+    }
+
+    /* Slider track transition */
+    .slider-track {
+      display: flex;
+      width: 400%;
+      height: calc(100vh - 68px);
+      transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+
+    .slide-section {
+      width: 25%;
+      height: 100%;
+      overflow-y: auto;
+    }
+
+    /* Glassmorphism Card Style */
+    .glass-card {
+      background: rgba(45, 27, 61, 0.55);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(205, 182, 245, 0.2);
+    }
+    .glass-card:hover {
+      border-color: rgba(255, 159, 198, 0.5);
+    }
+
+    /* ===== Khung GIF Violet Evergarden (trang 2) ===== */
+    .violet-gif-card {
+      position: relative;
+      border-radius: 1rem;
+      overflow: hidden;
+      background: rgba(45, 27, 61, 0.65);
+      border: 1px solid rgba(205, 182, 245, 0.35);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.4), 0 0 18px rgba(205, 182, 245, 0.15);
+      transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+    }
+    .violet-gif-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      border-color: rgba(255, 159, 198, 0.75);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.5), 0 0 25px rgba(255, 159, 198, 0.35);
+    }
+    .violet-gif-card::after {
+      content: "";
+      position: absolute;
+      inset: 5px;
+      border-radius: 0.75rem;
+      border: 1px solid rgba(255, 232, 185, 0.25);
+      pointer-events: none;
+    }
+
+    /* ===== Vòng xoay ảnh cosplay (trang 4) ===== */
+    .ring-stage { perspective: 1100px; cursor: grab; touch-action: pan-y; user-select: none; }
+    .ring-stage:active { cursor: grabbing; }
+    .ring { position: relative; transform-style: preserve-3d; }
+    .ring-card {
+      position: absolute; inset: 0; border-radius: 1rem; overflow: hidden;
+      backface-visibility: hidden; -webkit-backface-visibility: hidden;
+      border: 1px solid rgba(205, 182, 245, 0.35);
+      background: rgba(45, 27, 61, 0.75);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+      filter: brightness(0.5);
+      transition: filter 0.4s, box-shadow 0.4s, border-color 0.4s;
+    }
+    .ring-card.is-front {
+      filter: brightness(1);
+      border-color: rgba(255, 159, 198, 0.75);
+      box-shadow: 0 0 35px rgba(255, 159, 198, 0.5), 0 20px 40px rgba(0, 0, 0, 0.5);
+    }
+    .ring-card img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; -webkit-user-drag: none; }
+    .ring-ph {
+      width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 8px; text-align: center; padding: 12px; color: #cdb6f5; font-weight: 700;
+      background: linear-gradient(160deg, rgba(205,182,245,.28), rgba(255,159,198,.28));
+    }
+    .ring-ph small { font-weight: 500; opacity: .75; font-size: .7rem; }
+
+    /* ===== Luồng sáng gió thoảng nhẹ trên nền trang 4 ===== */
+    .wind-sheen {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0;
+      background: linear-gradient(
+        105deg,
+        transparent 15%,
+        rgba(205, 182, 245, 0.08) 40%,
+        rgba(255, 255, 255, 0.14) 50%,
+        rgba(255, 159, 198, 0.08) 60%,
+        transparent 85%
+      );
+      transform: translateX(-100%);
+    }
+    .wind-sheen.is-blowing {
+      animation: windSheenSweep 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    @keyframes windSheenSweep {
+      0%   { opacity: 0; transform: translateX(-100%); }
+      25%  { opacity: 1; }
+      100% { opacity: 0; transform: translateX(100%); }
+    }
+
+    /* ===== 2 ngôi sao vút qua góc trái khi chuyển trang (~3 giây) ===== */
+    #starLayer { position: fixed; inset: 0; pointer-events: none; z-index: 55; overflow: hidden; }
+    .shooting-star {
+      position: absolute; width: 170px; height: 3px; border-radius: 999px; opacity: 0;
+      background: linear-gradient(90deg, #ffffff 0%, rgba(255,159,198,.75) 35%, rgba(205,182,245,0) 100%);
+      transform-origin: left center;
+      filter: drop-shadow(0 0 6px rgba(255,159,198,.95));
+      animation: starFly 1.9s cubic-bezier(.35,.1,.25,1) forwards;
+    }
+    .shooting-star::before {   /* đầu sao 4 cánh */
+      content: ""; position: absolute; left: -9px; top: 50%; width: 18px; height: 18px;
+      transform: translateY(-50%); background: #fff;
+      clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%);
+    }
+    .shooting-star.s1 { left: 42vw; top: 5vh; }
+    .shooting-star.s2 { left: 54vw; top: 16vh; width: 130px; animation-delay: 1.2s; }
+    @keyframes starFly {
+      0%   { opacity: 0; transform: translate(0, 0) rotate(-30deg); }
+      12%  { opacity: 1; }
+      80%  { opacity: 1; }
+      100% { opacity: 0; transform: translate(-50vw, 29vw) rotate(-30deg); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #starLayer, #windCanvas { display: none; }
+    }
+  </style>
+</head>
+<body class="bg-plum text-cream font-sans overflow-hidden select-none relative min-h-screen">
+
+  <!-- Sakura Falling Petals Canvas -->
+  <canvas id="sakuraCanvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-20"></canvas>
+
+  <!-- Hiệu ứng thư bay (Violet Evergarden) — chỉ chạy khi chuyển qua trang 3 -->
+  <canvas id="letterCanvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-[30]"></canvas>
+
+  <!-- Hiệu ứng gió thổi phong cách anime — chỉ chạy khi chuyển qua trang 4 (Cosplay and Staff) -->
+  <canvas id="windCanvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-[35]"></canvas>
+
+  <!-- Lớp hiệu ứng sao băng — chỉ chạy khi chuyển qua trang 2 -->
+  <div id="starLayer" aria-hidden="true"></div>
+
+  <!-- TOP NAVIGATION BAR -->
+  <header class="fixed top-0 left-0 right-0 h-[68px] bg-black border-b border-lilac/20 text-cream z-50 flex items-center justify-between px-6 md:px-12 shadow-2xl">
+    <!-- Logo -->
+    <a href="#" onclick="switchPage(0); return false;" class="group flex items-center gap-2 focus:outline-none">
+      <span class="text-2xl md:text-3xl font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-lilac to-pink group-hover:opacity-90 transition-opacity">
+        Neh
+      </span>
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <nav class="hidden md:flex items-center space-x-1" aria-label="Main Navigation">
+      <button onclick="switchPage(0)" id="nav-btn-0" class="nav-link px-5 py-2 rounded-full text-base font-semibold transition-all duration-300 text-lilac bg-lilac/10 border border-lilac/30">
+        Home
+      </button>
+      <button onclick="switchPage(1)" id="nav-btn-1" class="nav-link px-5 py-2 rounded-full text-base font-semibold transition-all duration-300 text-cream/70 hover:text-cream hover:bg-white/5">
+        Giới thiệu
+      </button>
+      <button onclick="switchPage(2)" id="nav-btn-2" class="nav-link px-5 py-2 rounded-full text-base font-semibold transition-all duration-300 text-cream/70 hover:text-cream hover:bg-white/5">
+        Fact
+      </button>
+      <button onclick="switchPage(3)" id="nav-btn-3" class="nav-link px-5 py-2 rounded-full text-base font-semibold transition-all duration-300 text-cream/70 hover:text-cream hover:bg-white/5">
+        Cosplay and Staff
+      </button>
+    </nav>
+
+    <!-- Mobile Hamburger Button -->
+    <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="md:hidden text-lilac p-2 focus:outline-none rounded-lg border border-lilac/20 hover:bg-lilac/10" aria-label="Toggle navigation menu">
+      <svg id="hamburgerIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+      <svg id="closeIcon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+  </header>
+
+  <!-- Mobile Navigation Dropdown -->
+  <div id="mobileMenu" class="fixed top-[68px] left-0 right-0 bg-black/95 border-b border-lilac/30 z-40 hidden flex-col p-4 space-y-3 transition-all duration-300 md:hidden backdrop-blur-md">
+    <button onclick="switchPage(0); toggleMobileMenu();" id="mob-nav-btn-0" class="w-full text-left px-4 py-3 rounded-xl font-semibold transition-colors bg-lilac/20 text-lilac border border-lilac/30">
+      🌸 Home
+    </button>
+    <button onclick="switchPage(1); toggleMobileMenu();" id="mob-nav-btn-1" class="w-full text-left px-4 py-3 rounded-xl font-semibold transition-colors text-cream/80 hover:bg-lilac/10 hover:text-cream">
+      ✨ Giới thiệu
+    </button>
+    <button onclick="switchPage(2); toggleMobileMenu();" id="mob-nav-btn-2" class="w-full text-left px-4 py-3 rounded-xl font-semibold transition-colors text-cream/80 hover:bg-lilac/10 hover:text-cream">
+      💡 Fact
+    </button>
+    <button onclick="switchPage(3); toggleMobileMenu();" id="mob-nav-btn-3" class="w-full text-left px-4 py-3 rounded-xl font-semibold transition-colors text-cream/80 hover:bg-lilac/10 hover:text-cream">
+      🎀 Cosplay and Staff
+    </button>
+  </div>
+
+  <!-- MAIN VIEWPORT SLIDER -->
+  <main class="mt-[68px] w-full overflow-hidden relative">
+    <div id="sliderTrack" class="slider-track">
+      
+      <!-- SECTION 1: HOME -->
+      <section id="section-home" class="slide-section flex items-center justify-center p-6 md:p-12 relative">
+        <!-- BACKGROUND TRANG 1 (địa chỉ file điền ở dòng BACKGROUND_SRC trong phần <script> phía dưới) -->
+        <div id="homeBg" class="absolute inset-0 z-0 overflow-hidden"></div>
+        <!-- Lớp phủ tối nhẹ cho chữ dễ đọc: muốn nền rõ hơn thì giảm số /30 /45 /65, muốn bỏ thì xoá cả dòng div này -->
+        <div class="absolute inset-0 z-[1] pointer-events-none bg-gradient-to-b from-plum/30 via-plum/45 to-plum/65"></div>
+        <div class="max-w-3xl w-full text-center flex flex-col items-center justify-center space-y-8 z-10 py-8">
+          
+          <!-- Avatar Container -->
+          <div class="relative group">
+            <div class="absolute -inset-1 bg-gradient-to-r from-lilac to-pink rounded-full blur opacity-40 group-hover:opacity-75 transition duration-500"></div>
+            <div class="relative">
+              <div class="w-40 h-40 md:w-48 md:h-48 rounded-full avatar-border-double shadow-[0_0_30px_rgba(205,182,245,0.45)] bg-gradient-to-b from-[#2a1a3a] to-[#120a1c] overflow-hidden flex items-center justify-center p-2 transform group-hover:scale-105 transition-transform duration-300">
+                <img src="E:\web\avatar.jpg" alt="Neh Avatar" class="w-full h-full object-cover rounded-full">
+              </div>
+            </div>
+            <span class="absolute bottom-2 right-2 flex h-5 w-5">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-5 w-5 bg-pink border-2 border-plum"></span>
+            </span>
+          </div>
+
+          <!-- Title -->
+          <div class="space-y-3">
+            <h1 class="text-2xl sm:text-3xl md:text-5xl font-extrabold tracking-tight text-cream leading-tight">
+              "Nếu chim đem lòng yêu cá<br class="hidden sm:block" />
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-lilac via-pink to-lilac">
+                thì chúng sẽ ở đâu"
+              </span>
+            </h1>
+            <p class="text-base sm:text-lg md:text-xl text-lilac/90 font-medium max-w-xl mx-auto pt-2">
+              Đây là profile về mình nếu bạn muốn tìm hiểu mình hihi
+            </p>
+          </div>
+
+          <!-- CTA Button -->
+          <div class="pt-4">
+            <button onclick="switchPage(1)" class="group relative inline-flex items-center justify-center px-8 py-4 text-base font-bold text-plum bg-gradient-to-r from-lilac to-pink rounded-full shadow-[0_0_25px_rgba(205,182,245,0.5)] hover:shadow-[0_0_35px_rgba(255,159,198,0.8)] transform hover:-translate-y-1 transition-all duration-300 active:translate-y-0 focus:outline-none">
+              <span>GIỚI THIỆU BẢN THÂN</span>
+              <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+              </svg>
+            </button>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SECTION 2: GIỚI THIỆU -->
+      <section id="section-about" class="slide-section p-6 sm:p-10 md:p-16 relative">
+        <div class="max-w-4xl mx-auto space-y-8 pb-12">
+          
+          <div class="text-center space-y-3">
+            <span class="inline-block text-xs uppercase tracking-widest text-pink font-bold bg-pink/10 px-3 py-1 rounded-full border border-pink/20">
+              Get to know me
+            </span>
+            <h2 class="text-2xl sm:text-3xl md:text-2xl font-extrabold leading-tight pb-1 text-transparent bg-clip-text bg-gradient-to-r from-lilac to-pink">
+              GIỚI THIỆU BẢN THÂN
+            </h2>
+            <div class="w-20 h-1 bg-gradient-to-r from-lilac to-pink mx-auto rounded-full mt-3"></div>
+          </div>
+
+          <!-- 3 Tấm GIF Violet Evergarden lặp đi lặp lại (điền link/file ở dòng ABOUT_GIFS trong <script>) -->
+          <div id="aboutGifGallery" class="grid grid-cols-1 sm:grid-cols-3 gap-5 pt-1"></div>
+
+          <!-- Cards Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+            
+            <div class="glass-card p-6 rounded-2xl shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+              <div class="flex items-start gap-4">
+                <div class="p-3 bg-lilac/10 text-lilac rounded-xl border border-lilac/30 group-hover:bg-lilac group-hover:text-plum transition-colors">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                  </svg>
+                </div>
+                <div class="space-y-1">
+                  <h3 class="text-sm font-bold uppercase tracking-wider text-pink">Tên gọi</h3>
+                  <p class="text-lg font-medium text-cream">
+                    Gọi mình là <span class="text-lilac font-bold">Nhật</span> hay <span class="text-pink font-bold">Neh</span> hay thứ gì khác miễn là tôn trọng là được.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass-card p-6 rounded-2xl shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+              <div class="flex items-start gap-4">
+                <div class="p-3 bg-lilac/10 text-lilac rounded-xl border border-lilac/30 group-hover:bg-lilac group-hover:text-plum transition-colors">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M4 21h16a1 1 0 001-1V8a1 1 0 00-1-1H4a1 1 0 00-1 1v12a1 1 0 001 1z"></path>
+                  </svg>
+                </div>
+                <div class="space-y-1">
+                  <h3 class="text-sm font-bold uppercase tracking-wider text-pink">Tuổi tác</h3>
+                  <p class="text-lg font-medium text-cream">
+                    Vấn đề tuổi tác thì mình 2k8, nhỏ tuổi hơn thì goi mình sao cũng được miễn là trong lúc cãi nhau tôn trọng gọi bằng anh thì okela ko có vấn đề, còn lớn tuổi hơn thì dạ em xin phép hàng
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass-card p-6 rounded-2xl shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+              <div class="flex items-start gap-4">
+                <div class="p-3 bg-lilac/10 text-lilac rounded-xl border border-lilac/30 group-hover:bg-lilac group-hover:text-plum transition-colors">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 01-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
+                  </svg>
+                </div>
+                <div class="space-y-1">
+                  <h3 class="text-sm font-bold uppercase tracking-wider text-pink">Tình trạng hiện tại</h3>
+                  <p class="text-lg font-medium text-cream">
+                    Đang học ở <span class="text-lilac font-bold">ULAW TPHCM</span> nha 🎓 và đang độc toàn thân
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass-card p-6 rounded-2xl shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+              <div class="flex items-start gap-4">
+                <div class="p-3 bg-lilac/10 text-lilac rounded-xl border border-lilac/30 group-hover:bg-lilac group-hover:text-plum transition-colors">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </div>
+                <div class="space-y-1">
+                  <h3 class="text-sm font-bold uppercase tracking-wider text-pink">Tính cách</h3>
+                  <p class="text-lg font-medium text-cream">
+                    T cực kì cực kì cực kì <span class="text-pink font-bold">khó tính</span>  ban đầu cực kì khó gần, hay phán xét, nói thô ra những gì mình nghĩ luôn ấy nhé, cực kì cầu toàn.Nếu ai ko chịu được thì thôi bạn mình khó ăn khó ở lắm
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass-card p-6 md:p-8 rounded-2xl shadow-xl transition-all duration-300 hover:-translate-y-1 md:col-span-2 border-pink/30 group">
+              <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div class="flex items-start gap-4">
+                  <div class="p-3 bg-pink/20 text-pink rounded-xl border border-pink/40 group-hover:bg-pink group-hover:text-plum transition-colors shrink-0">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                      <!-- Icon trái tim -->
+                      <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z"></path>
+                    </svg>
+                  </div>
+                  <div class="space-y-1">
+                    <div class="flex items-center gap-2">
+                      <h3 class="text-sm font-bold uppercase tracking-wider text-pink">Về chuyện tình cảm</h3>
+                      <span class="text-xs bg-red-500/20 text-red-300 px-2 py-0.5 rounded border border-red-500/30 font-bold">⚠️ Warning</span>
+                    </div>
+                    <p class="text-lg font-medium text-cream leading-relaxed">
+                      Tôi <span class="text-pink font-extrabold decoration-pink ">siêu red flag</span>, 
+                      <span class="text-pink font-extrabold decoration-pink ">siêu red flag</span>, 
+                      <span class="text-pink font-extrabold decoration-pink ">siêu red flag</span> điều gì quan trọng phải nói 3 lần nếu bạn ko tin thì t có thể đưa bạn link của những người nyc t :))) họ sẽ kể cho bạn nghe.Nếu bạn muốn tìm hiểu t về tình yêu á :))) thì nghe bài Chả ra gì của Trúc Nhân đi.
+                    </p>
+                  </div>
+                </div>
+
+                <a href="https://www.youtube.com/watch?v=rRUzJJ9IV4s" target="_blank" rel="noopener noreferrer" 
+                   class="inline-flex items-center justify-center gap-3 px-6 py-3.5 rounded-xl bg-red-600/80 hover:bg-red-600 text-white font-bold text-sm shadow-lg hover:shadow-red-500/40 transition-all transform hover:scale-105 active:scale-95 shrink-0 focus:outline-none">
+                  <svg class="w-6 h-6 fill-current text-white" viewBox="0 0 24 24">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                  </svg>
+                  <span>Nghe "Không Ra Gì" - Trúc Nhân</span>
+                  <svg class="w-4 h-4 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="flex justify-center pt-6">
+            <button onclick="switchPage(2)" class="px-6 py-3 rounded-full border border-lilac/40 text-lilac hover:bg-lilac hover:text-plum font-semibold transition-all duration-300 flex items-center gap-2">
+              <span>Xem Fact About Me</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </button>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SECTION 3: FACT -->
+      <section id="section-fact" class="slide-section p-6 sm:p-10 md:p-16 flex items-center justify-center relative">
+        <div class="max-w-2xl w-full text-center space-y-8 z-10 my-auto py-8">
+
+          <div class="space-y-3">
+            <span class="inline-block text-xs uppercase tracking-widest text-lilac font-bold bg-lilac/10 px-3 py-1 rounded-full border border-lilac/20">
+              Fun facts
+            </span>
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-lilac to-pink">
+              FACT ABOUT ME
+            </h2>
+            <div class="w-20 h-1 bg-gradient-to-r from-lilac to-pink mx-auto rounded-full mt-2"></div>
+          </div>
+
+          <!-- Danh sách fact: tự tạo từ mảng FACTS trong phần <script> (thêm fact mới ở đó) -->
+          <div id="factList" class="space-y-4 text-left"></div>
+
+          <!-- Nút thả tim -->
+          <div>
+            <button onclick="triggerSurprise()" id="surpriseBtn" class="px-6 py-3 rounded-full bg-pink/20 hover:bg-pink text-pink hover:text-plum border border-pink/40 font-bold transition-all duration-300 text-sm focus:outline-none">
+              💗 Bấm vào đây để thả tim
+            </button>
+            <div id="heartCounter" class="text-xs text-pink/80 mt-3 font-semibold opacity-0 transition-opacity">
+              Đã thả thành công <span id="heartCount">0</span> trái tim! 💗
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
+            <button onclick="switchPage(0)" class="text-sm text-lilac/80 hover:text-lilac underline transition-colors">
+              ← Quay lại Trang Chủ
+            </button>
+            <button onclick="switchPage(3)" class="text-sm text-pink hover:text-cream underline transition-colors">
+              Xem Cosplay and Staff →
+            </button>
+          </div>
+
+        </div>
+      </section>
+
+
+      <!-- SECTION 4: COSPLAY AND STAFF -->
+      <section id="section-cosplay" class="slide-section overflow-x-hidden p-6 sm:p-10 md:p-16 relative">
+        <!-- Luồng sáng gió thoảng nhẹ khi chuyển sang trang 4 -->
+        <div id="windSheen" class="wind-sheen"></div>
+
+        <div class="max-w-4xl mx-auto space-y-6 pb-12">
+
+          <div class="text-center space-y-2">
+            <span class="inline-block text-xs uppercase tracking-widest text-pink font-bold bg-pink/10 px-3 py-1 rounded-full border border-pink/20">
+              Gallery
+            </span>
+            <h2 class="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-lilac to-pink">
+              Cosplay and Staff
+            </h2>
+            <div class="w-20 h-1 bg-gradient-to-r from-lilac to-pink mx-auto rounded-full mt-3"></div>
+          </div>
+          <!-- Vòng xoay ảnh (ảnh thêm ở dòng COSPLAY_IMAGES trong phần <script>) -->
+          <div id="ringStage" class="ring-stage relative w-full flex items-center justify-center">
+            <div id="ring" class="ring"></div>
+          </div>
+
+          <div class="flex items-center justify-center gap-5">
+            <button id="ringPrev" aria-label="Ảnh trước" class="w-11 h-11 rounded-full border border-lilac/40 text-lilac hover:bg-lilac hover:text-plum transition-colors text-xl leading-none">‹</button>
+            <span id="ringCounter" class="text-sm font-semibold text-pink min-w-[60px] text-center">1 / 1</span>
+            <button id="ringNext" aria-label="Ảnh sau" class="w-11 h-11 rounded-full border border-lilac/40 text-lilac hover:bg-lilac hover:text-plum transition-colors text-xl leading-none">›</button>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- NHẠC NỀN (nút bật/tắt + chỉnh âm lượng, chỉ hiện khi đã điền MUSIC_SRC) -->
+  <div id="musicPlayer" class="fixed bottom-4 right-4 z-[60] hidden items-center gap-2 bg-black/70 backdrop-blur-md border border-lilac/30 rounded-full pl-1 pr-3 py-1 shadow-lg">
+    <button id="musicBtn" aria-label="Bật / tắt nhạc" class="w-10 h-10 rounded-full bg-gradient-to-r from-lilac to-pink text-plum flex items-center justify-center text-lg focus:outline-none">
+      <span id="musicIcon">🎵</span>
+    </button>
+    <input id="musicVol" type="range" min="0" max="100" value="50" aria-label="Âm lượng" class="w-20 accent-pink hidden sm:block">
+  </div>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    /* ==========================================================
+       NHẠC NỀN — phát xuyên suốt tất cả các trang
+       Dán địa chỉ file nhạc vào giữa 2 dấu ` ` (mp3, m4a, wav, ogg đều được).
+       Ví dụ:  const MUSIC_SRC = String.raw`E:\web\music.mp3`;
+       Để trống thì không có nhạc và nút nhạc sẽ ẩn.
+       Lưu ý: trình duyệt không cho tự phát tiếng khi vừa mở trang,
+       nên nhạc sẽ bắt đầu ngay khi người xem chạm/bấm vào trang lần đầu
+       (hoặc bấm nút 🎵 ở góc phải dưới).
+       ========================================================== */
+    const MUSIC_SRC = String.raw`E:\web\doi.mp3`;
+    const MUSIC_SRC2 = String.raw`E:\web\chill.mp3`;
+    const MUSIC_VOLUME = 0.5;     // âm lượng ban đầu: 0 (im) → 1 (to nhất)
+
+    (function setupMusic() {
+      const playlist = [MUSIC_SRC.trim().replace(/\\/g, '/'), MUSIC_SRC2.trim().replace(/\\/g, '/')].filter(Boolean);
+      if (playlist.length === 0) return;
+
+      const box = document.getElementById('musicPlayer');
+      const btn = document.getElementById('musicBtn');
+      const icon = document.getElementById('musicIcon');
+      const vol = document.getElementById('musicVol');
+
+      let currentTrackIdx = 0;
+      let audio = new Audio(playlist[currentTrackIdx]);
+      audio.volume = MUSIC_VOLUME;
+      audio.preload = 'auto';
+      vol.value = Math.round(MUSIC_VOLUME * 100);
+      box.classList.remove('hidden');
+      box.classList.add('flex');
+
+      let wantPlay = true;
+
+      function refreshUI() {
+        const playing = !audio.paused;
+        icon.textContent = playing ? '🎵' : '🔇';
+        btn.classList.toggle('animate-pulse', playing);
+      }
+
+      function tryPlay() {
+        audio.play().then(refreshUI).catch(() => {
+          // Trình duyệt chặn autoplay chưa tương tác -> tự động kích hoạt ngay khi có sự kiện đầu tiên
+          const autoUnlock = () => {
+            if (wantPlay && audio.paused) {
+              audio.play().then(refreshUI).catch(() => {});
+            }
+            window.removeEventListener('pointerdown', autoUnlock);
+            window.removeEventListener('keydown', autoUnlock);
+            window.removeEventListener('touchstart', autoUnlock);
+            window.removeEventListener('mousemove', autoUnlock);
+          };
+          window.addEventListener('pointerdown', autoUnlock);
+          window.addEventListener('keydown', autoUnlock);
+          window.addEventListener('touchstart', autoUnlock);
+          window.addEventListener('mousemove', autoUnlock);
+        });
+      }
+
+      audio.addEventListener('ended', () => {
+        currentTrackIdx = (currentTrackIdx + 1) % playlist.length;
+        audio.src = playlist[currentTrackIdx];
+        audio.play().then(refreshUI).catch(refreshUI);
+      });
+
+      btn.addEventListener('click', () => {
+        if (audio.paused) { wantPlay = true; tryPlay(); }
+        else { wantPlay = false; audio.pause(); refreshUI(); }
+      });
+
+      vol.addEventListener('input', () => { audio.volume = vol.value / 100; });
+
+      tryPlay();
+      refreshUI();
+    })();
+
+    /* ==========================================================
+       HIỆU ỨNG ÂM THANH CHUYỂN TRANG (Trang 2, 3, 4)
+       - Nếu có file .mp3 / .wav riêng: dán đường dẫn vào giữa 2 dấu ` `.
+         Ví dụ: star: String.raw`E:\web\shooting-star.mp3`,
+       - Nếu để trống ``: web tự tạo hiệu ứng âm thanh mẫu để chạy luôn.
+       ========================================================== */
+    const PAGE_SFX = {
+      star: String.raw``,    // Trang 2: tiếng sao băng (~2s)
+      letter: String.raw``,  // Trang 3: tiếng lá thư tung bay
+      wind: String.raw``,    // Trang 4: tiếng gió thổi
+    };
+    const SFX_VOLUME = 0.65; // âm lượng hiệu ứng: 0 (im) → 1 (to nhất)
+
+    const sfxController = (function setupPageSfx() {
+      let audioCtx = null;
+      let activeAudio = null;
+      let activeNodes = [];
+
+      function getCtx() {
+        if (!audioCtx) {
+          const Ctx = window.AudioContext || window.webkitAudioContext;
+          if (Ctx) audioCtx = new Ctx();
+        }
+        if (audioCtx && audioCtx.state === 'suspended') {
+          audioCtx.resume().catch(() => {});
+        }
+        return audioCtx;
+      }
+
+      function stopAll() {
+        if (activeAudio) {
+          activeAudio.pause();
+          activeAudio.currentTime = 0;
+          activeAudio = null;
+        }
+        activeNodes.forEach((n) => {
+          try { if (n.stop) n.stop(); } catch (_) {}
+          try { if (n.disconnect) n.disconnect(); } catch (_) {}
+        });
+        activeNodes = [];
+      }
+
+      // Tạo buffer nhiễu trắng để giả lập tiếng gió & tiếng giấy sột soạt
+      function createNoiseBuffer(ctx, seconds) {
+        const len = Math.floor(ctx.sampleRate * seconds);
+        const buf = ctx.createBuffer(1, len, ctx.sampleRate);
+        const data = buf.getChannelData(0);
+        for (let i = 0; i < len; i++) data[i] = Math.random() * 2 - 1;
+        return buf;
+      }
+
+      // 1. Âm thanh sao băng (~2s): tiếng vút gió cao + tiếng chuông sao lấp lánh
+      function synthStar(ctx) {
+        const now = ctx.currentTime;
+        const master = ctx.createGain();
+        master.gain.setValueAtTime(SFX_VOLUME * 0.7, now);
+        master.connect(ctx.destination);
+        activeNodes.push(master);
+
+        // Ngôi sao 1 (0s) & Ngôi sao 2 (trễ 1.15s khớp CSS animation-delay: 1.2s)
+        [0, 1.15].forEach((offset, idx) => {
+          const t0 = now + offset;
+          const dur = idx === 0 ? 1.1 : 0.95;
+
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(idx === 0 ? 1950 : 1680, t0);
+          osc.frequency.exponentialRampToValueAtTime(420, t0 + dur);
+
+          gain.gain.setValueAtTime(0.0001, t0);
+          gain.gain.exponentialRampToValueAtTime(0.22, t0 + 0.14);
+          gain.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+
+          osc.connect(gain);
+          gain.connect(master);
+          osc.start(t0);
+          osc.stop(t0 + dur + 0.05);
+          activeNodes.push(osc, gain);
+
+          // Hạt sáng lấp lánh (shimmer)
+          [2637, 3136, 3951].forEach((freq, i) => {
+            const st = t0 + 0.08 + i * 0.11;
+            const sOsc = ctx.createOscillator();
+            const sGain = ctx.createGain();
+            sOsc.type = 'triangle';
+            sOsc.frequency.setValueAtTime(freq, st);
+            sGain.gain.setValueAtTime(0.0001, st);
+            sGain.gain.exponentialRampToValueAtTime(0.08, st + 0.03);
+            sGain.gain.exponentialRampToValueAtTime(0.0001, st + 0.45);
+            sOsc.connect(sGain);
+            sGain.connect(master);
+            sOsc.start(st);
+            sOsc.stop(st + 0.5);
+            activeNodes.push(sOsc, sGain);
+          });
+        });
+      }
+
+      // 2. Âm thanh lá thư tung bay: tiếng giấy xào xạc nhiều lớp rồi dịu dần khi thư rơi
+      function synthLetter(ctx) {
+        const now = ctx.currentTime;
+        const total = 4.6;
+        const noise = ctx.createBufferSource();
+        noise.buffer = createNoiseBuffer(ctx, total);
+
+        const filter = ctx.createBiquadFilter();
+        filter.type = 'bandpass';
+        filter.frequency.setValueAtTime(2400, now);
+        filter.Q.setValueAtTime(1.8, now);
+
+        const master = ctx.createGain();
+        master.gain.setValueAtTime(0.0001, now);
+        master.connect(ctx.destination);
+
+        const flutters = [0.02, 0.14, 0.28, 0.45, 0.68, 0.95, 1.3, 1.75, 2.25, 2.85, 3.5];
+        flutters.forEach((tOff, i) => {
+          const t = now + tOff;
+          const peak = SFX_VOLUME * Math.max(0.08, 0.65 * (1 - tOff / total));
+          master.gain.setTargetAtTime(peak, t, 0.025);
+          master.gain.setTargetAtTime(0.015, t + 0.07, 0.05);
+          filter.frequency.setValueAtTime(1900 + ((i * 370) % 1500), t);
+        });
+        master.gain.setTargetAtTime(0.0001, now + total - 0.6, 0.2);
+
+        noise.connect(filter);
+        filter.connect(master);
+        noise.start(now);
+        noise.stop(now + total);
+        activeNodes.push(noise, filter, master);
+      }
+
+      // 3. Âm thanh gió thổi: 2 đợt gió lùa nhẹ (khớp windStreams đợt 0s và đợt 0.75s)
+      function synthWind(ctx) {
+        const now = ctx.currentTime;
+        const total = 3.6;
+        const noise = ctx.createBufferSource();
+        noise.buffer = createNoiseBuffer(ctx, total);
+
+        const filter = ctx.createBiquadFilter();
+        filter.type = 'bandpass';
+        filter.Q.setValueAtTime(3.2, now);
+        filter.frequency.setValueAtTime(280, now);
+        filter.frequency.exponentialRampToValueAtTime(720, now + 0.65);
+        filter.frequency.exponentialRampToValueAtTime(360, now + 1.15);
+        filter.frequency.exponentialRampToValueAtTime(620, now + 1.65);
+        filter.frequency.exponentialRampToValueAtTime(220, now + total);
+
+        const gain = ctx.createGain();
+        gain.gain.setValueAtTime(0.0001, now);
+        gain.gain.linearRampToValueAtTime(SFX_VOLUME * 0.55, now + 0.45);
+        gain.gain.linearRampToValueAtTime(SFX_VOLUME * 0.25, now + 1.0);
+        gain.gain.linearRampToValueAtTime(SFX_VOLUME * 0.45, now + 1.55);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + total);
+
+        noise.connect(filter);
+        filter.connect(gain);
+        gain.connect(ctx.destination);
+        noise.start(now);
+        noise.stop(now + total);
+        activeNodes.push(noise, filter, gain);
+      }
+
+      function play(type) {
+        stopAll();
+        const customSrc = (PAGE_SFX[type] || '').trim().replace(/\\/g, '/');
+        if (customSrc) {
+          const audio = new Audio(customSrc);
+          audio.volume = SFX_VOLUME;
+          activeAudio = audio;
+          audio.play().catch(() => {});
+          return;
+        }
+        const ctx = getCtx();
+        if (!ctx) return;
+        if (type === 'star') synthStar(ctx);
+        else if (type === 'letter') synthLetter(ctx);
+        else if (type === 'wind') synthWind(ctx);
+      }
+
+      return { play, stopAll };
+    })();
+
+    /* ==========================================================
+       ĐỔI BACKGROUND TRANG 1 Ở ĐÂY
+       Dán địa chỉ file của bạn vào giữa 2 dấu ` ` bên dưới.
+       - Ảnh (.jpg .png .webp .gif) hoặc video (.mp4 .webm) đều được, tự nhận.
+       - Viết kiểu E:\web\background.mp4 hay E:/web/background.mp4 đều được.
+       - Hoặc chỉ cần ghi tên file nếu để chung thư mục: background.mp4
+       - Để trống thì nền chỉ có màu tím đậm.
+       Ví dụ:  const BACKGROUND_SRC = String.raw`E:\web\background.mp4`;
+       ========================================================== */
+    const BACKGROUND_SRC = String.raw`E:\web\background.mp4`;
+
+    (function setupHomeBackground() {
+      const src = BACKGROUND_SRC.trim().replace(/\\/g, '/');
+      if (!src) return;
+      const box = document.getElementById('homeBg');
+      const isVideo = /\.(mp4|webm|mov|ogg)(\?.*)?$/i.test(src);
+      let el;
+      if (isVideo) {
+        el = document.createElement('video');
+        el.src = src;
+        el.muted = true;
+        el.autoplay = true;
+        el.loop = true;          // lặp đi lặp lại liên tục
+        el.playsInline = true;
+        window.homeBgVideo = el;
+      } else {
+        el = document.createElement('img');
+        el.src = src;
+      }
+      el.className = 'w-full h-full object-cover';
+      box.appendChild(el);
+    })();
+
+    /* ==========================================================
+       3 TẤM GIF VIOLET EVERGARDEN (trang 2 — Giới thiệu)
+       Dán địa chỉ file GIF (hoặc .webp / .mp4) vào 3 dòng bên dưới.
+       - Viết đường dẫn trên máy (ví dụ: String.raw`E:\web\violet1.gif`)
+         hoặc dán link GIF trực tiếp trên mạng đều được.
+       - GIF sẽ tự động chạy lặp đi lặp lại liên tục ở đầu trang Giới thiệu.
+       - Để trống thì hiện 3 khung mẫu Violet Evergarden để xem trước bố cục.
+       ========================================================== */
+    const ABOUT_GIFS = [
+      String.raw`E:\web\gilbert.mp4`, // Tấm 1 — ví dụ: String.raw`E:\web\violet1.gif`
+      String.raw`E:\web\letter.mp4`, // Tấm 2 — ví dụ: String.raw`E:\web\violet2.gif`
+      String.raw`E:\web\violet.mp4`, // Tấm 3 — ví dụ: String.raw`E:\web\violet3.gif`
+    ];
+
+    (function setupAboutGifs() {
+      const gallery = document.getElementById('aboutGifGallery');
+      const list = ABOUT_GIFS.slice(0, 3);
+      while (list.length < 3) list.push('');
+
+      list.forEach((rawSrc, i) => {
+        const src = rawSrc.trim().replace(/\\/g, '/');
+        const card = document.createElement('div');
+        card.className = 'violet-gif-card aspect-video animate-float group';
+        card.style.animationDelay = (i * 1.1) + 's';
+
+
+
+        if (src) {
+          const isVideo = /\.(mp4|webm|mov|ogg)(\?.*)?$/i.test(src);
+          let media;
+          if (isVideo) {
+            media = document.createElement('video');
+            media.src = src;
+            media.muted = true;
+            media.autoplay = true;
+            media.loop = true;
+            media.playsInline = true;
+          } else {
+            media = document.createElement('img');
+            media.src = src;
+            media.alt = 'Violet Evergarden GIF ' + (i + 1);
+            media.onerror = () => {
+              media.remove();
+              const err = document.createElement('div');
+              err.className = 'w-full h-full flex flex-col items-center justify-center p-4 text-center text-xs text-pink/90 bg-plum/80';
+              err.innerHTML = '<span>⚠️ Không tải được GIF #' + (i + 1) + '</span><small class="opacity-75 mt-1">Kiểm tra lại đường dẫn ở ABOUT_GIFS</small>';
+              card.appendChild(err);
+            };
+          }
+          media.className = 'w-full h-full object-cover transition-transform duration-700 group-hover:scale-105';
+          card.appendChild(media);
+        } else {
+          const ph = document.createElement('div');
+          ph.className = 'w-full h-full flex flex-col items-center justify-center gap-1.5 p-4 text-center bg-gradient-to-br from-[#2b1a3d] via-[#1f132c] to-[#341f46]';
+          ph.innerHTML =
+            '<span class="text-2xl">💌</span>' +
+            '<span class="text-sm font-bold text-lilac">Violet Evergarden GIF ' + (i + 1) + '</span>' +
+            '<span class="text-[11px] text-cream/65">Dán link/file .gif ở dòng ABOUT_GIFS</span>';
+          card.appendChild(ph);
+        }
+
+        gallery.appendChild(card);
+      });
+    })();
+
+    /* ==========================================================
+       ẢNH COSPLAY (trang 4) — thêm ảnh ở đây
+       Mỗi ảnh 1 dòng, dán địa chỉ file vào giữa 2 dấu ` `, nhớ có dấu phẩy ở cuối.
+       Viết E:\web\cosplay1.jpg hay E:/web/cosplay1.jpg đều được.
+       Để trống thì hiện các khung ảnh mẫu.
+       Ví dụ:
+         const COSPLAY_IMAGES = [
+           String.raw`E:\web\cosplay1.jpg`,
+           String.raw`E:\web\cosplay2.jpg`,
+           String.raw`E:\web\cosplay3.jpg`,
+         ];
+       ========================================================== */
+    const COSPLAY_IMAGES = [
+      String.raw`E:\web\Cosplay\cos1.jpg`,
+      String.raw`E:\web\Cosplay\cos5.jpg`,
+      String.raw`E:\web\Cosplay\cos3.jpg`,
+      String.raw`E:\web\Cosplay\cos4.jpg`,
+      String.raw`E:\web\Cosplay\cos2.jpg`,
+    ];
+
+    let nudgeCosplayRing = null;
+
+    (function setupCosplayRing() {
+      const stage = document.getElementById('ringStage');
+      const ring = document.getElementById('ring');
+      const counter = document.getElementById('ringCounter');
+      const srcs = COSPLAY_IMAGES.map((s) => s.trim().replace(/\\/g, '/')).filter(Boolean);
+      const N = srcs.length || 8;          // chưa có ảnh thì hiện 8 khung mẫu
+      const step = 360 / N;
+      const cards = [];
+
+      for (let i = 0; i < N; i++) {
+        const card = document.createElement('div');
+        card.className = 'ring-card';
+        if (srcs[i]) {
+          const img = document.createElement('img');
+          img.src = srcs[i];
+          img.alt = 'Ảnh cosplay ' + (i + 1);
+          img.draggable = false;
+          card.appendChild(img);
+        } else {
+          card.innerHTML = '<div class="ring-ph"><span style="font-size:2rem">🌸</span><span>Ảnh cosplay ' + (i + 1) + '</span><small>Thêm ảnh ở dòng COSPLAY_IMAGES</small></div>';
+        }
+        ring.appendChild(card);
+        cards.push(card);
+      }
+
+      let rot = 0, target = 0, raf = null, snapTimer = null, radius = 300;
+
+      function render() {
+        rot += (target - rot) * 0.12;
+        if (Math.abs(target - rot) < 0.05) rot = target;
+        ring.style.transform = 'translateZ(' + (-radius) + 'px) rotateY(' + rot + 'deg)';
+        const front = ((Math.round(-rot / step) % N) + N) % N;
+        cards.forEach((c, i) => c.classList.toggle('is-front', i === front));
+        counter.textContent = (front + 1) + ' / ' + N;
+        raf = rot !== target ? requestAnimationFrame(render) : null;
+      }
+      function kick() { if (!raf) raf = requestAnimationFrame(render); }
+      function snap() { target = Math.round(target / step) * step; kick(); }
+      function nudge(deg) {
+        target += deg;
+        clearTimeout(snapTimer);
+        snapTimer = setTimeout(snap, 160);
+        kick();
+      }
+      function go(dir) { target = Math.round(target / step) * step - dir * step; kick(); }
+
+      // Cho phép luồng gió thổi nhẹ làm vòng ảnh khẽ lay động khi mới bước vào trang 4
+      nudgeCosplayRing = function() {
+        nudge(-step * 0.42);
+      };
+
+      function layout() {
+        const w = Math.min(230, window.innerWidth * 0.55);
+        const hgt = w * 1.4;
+        stage.style.height = (hgt + 70) + 'px';
+        ring.style.width = w + 'px';
+        ring.style.height = hgt + 'px';
+        radius = Math.max(Math.round((w / 2 + 16) / Math.tan(Math.PI / N)), 190);
+        cards.forEach((c, i) => {
+          c.style.transform = 'rotateY(' + (i * step) + 'deg) translateZ(' + radius + 'px)';
+        });
+        render();
+      }
+      window.addEventListener('resize', layout);
+      layout();
+
+      // Lăn chuột: 1 nấc = 1 ảnh (touchpad thì xoay mượt rồi tự canh cho thẳng)
+      stage.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        const d = Math.abs(e.deltaY) >= Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+        const clamped = Math.max(-150, Math.min(150, d));
+        nudge(-clamped * step / 100);
+      }, { passive: false });
+
+      // Kéo chuột / vuốt ngang
+      let dragging = false, lastX = 0, moved = 0;
+      stage.addEventListener('pointerdown', (e) => {
+        dragging = true; lastX = e.clientX; moved = 0;
+        clearTimeout(snapTimer);
+      });
+      window.addEventListener('pointermove', (e) => {
+        if (!dragging) return;
+        const dx = e.clientX - lastX;
+        lastX = e.clientX;
+        moved += Math.abs(dx);
+        target += dx * 0.4;
+        kick();
+      });
+      window.addEventListener('pointerup', () => {
+        if (!dragging) return;
+        dragging = false;
+        snap();
+      });
+
+      // Bấm vào ảnh bên cạnh để xoay ảnh đó ra giữa
+      cards.forEach((c, i) => c.addEventListener('click', () => {
+        if (moved > 6) return;
+        let diff = ((-i * step - target) % 360 + 540) % 360 - 180;
+        target += diff;
+        kick();
+      }));
+
+      document.getElementById('ringPrev').addEventListener('click', () => go(-1));
+      document.getElementById('ringNext').addEventListener('click', () => go(1));
+
+      // Vuốt trên vòng xoay thì không bị chuyển trang
+      ['touchstart', 'touchend'].forEach((t) => stage.addEventListener(t, (e) => e.stopPropagation()));
+    })();
+
+    // 2 ngôi sao vút qua góc trái màn hình (~3 giây). Muốn đổi thời gian/vị trí thì sửa phần .shooting-star trong <style>
+    let starTimer = null;
+    function playShootingStars() {
+      const layer = document.getElementById('starLayer');
+      layer.innerHTML = '<span class="shooting-star s1"></span><span class="shooting-star s2"></span>';
+      clearTimeout(starTimer);
+      starTimer = setTimeout(() => { layer.innerHTML = ''; }, 3300);
+    }
+
+    function clearShootingStars() {
+      clearTimeout(starTimer);
+      document.getElementById('starLayer').innerHTML = '';
+    }
+
+    /* ==========================================================
+       HIỆU ỨNG GIÓ THỔI PHONG CÁCH ANIME — chỉ chạy ở trang 4 (Cosplay and Staff)
+       Những dải gió lụa uốn lượn xoáy nhẹ kèm hạt sáng li ti lướt ngang màn hình
+       như cơn gió thoáng qua hất tung tà áo và mái tóc.
+       ========================================================== */
+    const WIND_SECONDS = 3.8;     // tổng thời gian cơn gió thoáng qua (giây)
+    const wCanvas = document.getElementById('windCanvas');
+    const wCtx = wCanvas.getContext('2d');
+    let wW = 0, wH = 0, wRaf = null, wStart = 0, wLast = 0;
+    let windStreams = [], windMotes = [];
+
+    function sizeWindCanvas() {
+      const dpr = window.devicePixelRatio || 1;
+      wW = window.innerWidth;
+      wH = window.innerHeight;
+      wCanvas.width = wW * dpr;
+      wCanvas.height = wH * dpr;
+      wCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    sizeWindCanvas();
+    window.addEventListener('resize', sizeWindCanvas);
+
+    function makeWindStream(delay, hasLoop) {
+      const startY = wH * (0.2 + Math.random() * 0.68);
+      const liftY = -wH * (0.12 + Math.random() * 0.22); // gió thổi chếch nhẹ lên trên
+      const palette = [
+        ['rgba(205, 182, 245, 0)', 'rgba(205, 182, 245, 0.65)', 'rgba(255, 255, 255, 0.92)'],
+        ['rgba(255, 159, 198, 0)', 'rgba(255, 159, 198, 0.58)', 'rgba(255, 245, 252, 0.9)'],
+        ['rgba(225, 210, 255, 0)', 'rgba(235, 225, 255, 0.6)',  'rgba(255, 255, 255, 0.95)'],
+      ];
+      return {
+        delay,
+        duration: 1.55 + Math.random() * 0.55,
+        x0: -wW * (0.12 + Math.random() * 0.1),
+        x1: wW * (1.14 + Math.random() * 0.1),
+        y0: startY,
+        y1: startY + liftY,
+        waveFreq: 1.8 + Math.random() * 1.4,
+        waveAmp: (18 + Math.random() * 26) * Math.min(1.2, wH / 800),
+        phase: Math.random() * Math.PI * 2,
+        hasLoop,
+        loopCenter: 0.35 + Math.random() * 0.35,
+        loopWidth: 0.13 + Math.random() * 0.04,
+        loopRadius: (42 + Math.random() * 34) * Math.min(1.15, wW / 1200),
+        tailSpan: 0.32 + Math.random() * 0.18,
+        maxHalfWidth: 1.3 + Math.random() * 1.8,
+        colors: palette[Math.floor(Math.random() * palette.length)],
+      };
+    }
+
+    function evalWindPoint(S, u) {
+      let x = S.x0 + (S.x1 - S.x0) * u;
+      let y = S.y0 + (S.y1 - S.y0) * u + Math.sin(u * Math.PI * S.waveFreq + S.phase) * S.waveAmp;
+
+      if (S.hasLoop) {
+        const d = (u - S.loopCenter) / S.loopWidth;
+        if (Math.abs(d) < 1) {
+          const env = Math.pow(Math.cos((d * Math.PI) / 2), 2);
+          x += -Math.sin(d * Math.PI) * S.loopRadius * env;
+          y += (Math.cos(d * Math.PI) - 1) * S.loopRadius * env;
+        }
+      }
+      return { x, y };
+    }
+
+    function drawWindStream(S, localT) {
+      const p = localT / S.duration; // 0 -> 1.35
+      const head = Math.min(1.08, p * 1.08);
+      const tail = Math.max(-0.05, head - S.tailSpan);
+      if (head <= 0 || tail >= 1) return;
+
+      const u0 = Math.max(0, tail);
+      const u1 = Math.min(1, head);
+      if (u1 - u0 < 0.01) return;
+
+      const steps = 42;
+      const pts = [];
+      for (let i = 0; i <= steps; i++) {
+        const u = u0 + ((u1 - u0) * i) / steps;
+        pts.push(evalWindPoint(S, u));
+      }
+
+      const upper = [];
+      const lower = [];
+      for (let i = 0; i < pts.length; i++) {
+        const prev = pts[Math.max(0, i - 1)];
+        const next = pts[Math.min(pts.length - 1, i + 1)];
+        const dx = next.x - prev.x;
+        const dy = next.y - prev.y;
+        const len = Math.hypot(dx, dy) || 1;
+        const nx = -dy / len;
+        const ny = dx / len;
+
+        const t = i / (pts.length - 1);
+        // Dải gió vuốt nhọn mượt ở 2 đầu, phình nhẹ ở gần mũi gió
+        const profile = Math.sin(Math.pow(t, 0.78) * Math.PI);
+        const hw = S.maxHalfWidth * profile;
+
+        upper.push({ x: pts[i].x + nx * hw, y: pts[i].y + ny * hw });
+        lower.push({ x: pts[i].x - nx * hw, y: pts[i].y - ny * hw });
+      }
+
+      const fadeOut = p > 0.9 ? Math.max(0, 1 - (p - 0.9) / 0.35) : 1;
+      const grad = wCtx.createLinearGradient(pts[0].x, pts[0].y, pts[pts.length - 1].x, pts[pts.length - 1].y);
+      grad.addColorStop(0, S.colors[0]);
+      grad.addColorStop(0.55, S.colors[1]);
+      grad.addColorStop(1, S.colors[2]);
+
+      wCtx.save();
+      wCtx.globalAlpha = fadeOut;
+      wCtx.shadowColor = 'rgba(225, 200, 255, 0.7)';
+      wCtx.shadowBlur = 10;
+      wCtx.fillStyle = grad;
+
+      wCtx.beginPath();
+      wCtx.moveTo(upper[0].x, upper[0].y);
+      for (let i = 1; i < upper.length; i++) wCtx.lineTo(upper[i].x, upper[i].y);
+      for (let i = lower.length - 1; i >= 0; i--) wCtx.lineTo(lower[i].x, lower[i].y);
+      wCtx.closePath();
+      wCtx.fill();
+      wCtx.restore();
+    }
+
+    function makeWindMote() {
+      const colors = ['#ffffff', '#cdb6f5', '#ff9fc6', '#f5e8ff'];
+      return {
+        x: -Math.random() * wW * 0.35,
+        y: wH * (0.15 + Math.random() * 0.78),
+        vx: wW * (0.65 + Math.random() * 0.55),
+        vy: -wH * (0.08 + Math.random() * 0.16),
+        r: 1.4 + Math.random() * 2.6,
+        streak: 8 + Math.random() * 18,
+        sway: Math.random() * Math.PI * 2,
+        swaySpeed: 3 + Math.random() * 4,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        delay: Math.random() * 0.9,
+      };
+    }
+
+    function windFrame(now) {
+      const t = (now - wStart) / 1000;
+      const dt = Math.min((now - wLast) / 1000, 1 / 30);
+      wLast = now;
+
+      wCtx.clearRect(0, 0, wW, wH);
+
+      // 1. Vẽ các dải gió lụa anime
+      windStreams.forEach((S) => {
+        const localT = t - S.delay;
+        if (localT > 0 && localT < S.duration * 1.3) {
+          drawWindStream(S, localT);
+        }
+      });
+
+      // 2. Vẽ các hạt sáng / sợi tơ bay theo luồng gió
+      const globalFade = t < WIND_SECONDS - 0.9 ? 1 : Math.max(0, 1 - (t - (WIND_SECONDS - 0.9)) / 0.9);
+      windMotes.forEach((M) => {
+        if (t < M.delay) return;
+        // Gió lướt nhanh lúc đầu rồi dịu dần lại như cơn gió thoáng qua
+        M.vx *= Math.pow(0.55, dt);
+        M.vy *= Math.pow(0.65, dt);
+        M.sway += M.swaySpeed * dt;
+        M.x += M.vx * dt;
+        M.y += (M.vy + Math.sin(M.sway) * 28) * dt;
+
+        if (M.x > wW + 40) return;
+
+        const angle = Math.atan2(M.vy, M.vx);
+        const tailLen = Math.max(M.r * 2, M.streak * (M.vx / (wW * 0.7)));
+
+        wCtx.save();
+        wCtx.translate(M.x, M.y);
+        wCtx.rotate(angle);
+        wCtx.globalAlpha = globalFade * 0.85;
+        wCtx.shadowColor = M.color;
+        wCtx.shadowBlur = 8;
+
+        const g = wCtx.createLinearGradient(-tailLen, 0, M.r, 0);
+        g.addColorStop(0, 'rgba(255,255,255,0)');
+        g.addColorStop(1, M.color);
+        wCtx.fillStyle = g;
+
+        wCtx.beginPath();
+        wCtx.ellipse(0, 0, tailLen * 0.65, M.r * 0.65, 0, 0, Math.PI * 2);
+        wCtx.fill();
+        wCtx.restore();
+      });
+
+      if (t < WIND_SECONDS) {
+        wRaf = requestAnimationFrame(windFrame);
+      } else {
+        stopWind();
+      }
+    }
+
+    function startWind() {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      stopWind();
+
+      // Đợt gió chính + đợt gió dư âm thoáng qua
+      windStreams = [
+        makeWindStream(0.0, true),
+        makeWindStream(0.08, false),
+        makeWindStream(0.16, true),
+        makeWindStream(0.24, false),
+        makeWindStream(0.32, false),
+        makeWindStream(0.75, true),
+        makeWindStream(0.88, false),
+        makeWindStream(1.02, false),
+      ];
+      windMotes = Array.from({ length: 36 }, makeWindMote);
+
+      // Kích hoạt luồng sáng lướt qua nền trang 4 + khẽ lay động vòng ảnh cosplay
+      const sheen = document.getElementById('windSheen');
+      if (sheen) {
+        sheen.classList.remove('is-blowing');
+        void sheen.offsetWidth; // reset animation
+        sheen.classList.add('is-blowing');
+      }
+      if (typeof nudgeCosplayRing === 'function') {
+        nudgeCosplayRing();
+      }
+
+      wStart = wLast = performance.now();
+      wRaf = requestAnimationFrame(windFrame);
+    }
+
+    function stopWind() {
+      if (wRaf) cancelAnimationFrame(wRaf);
+      wRaf = null;
+      wCtx.clearRect(0, 0, wW, wH);
+    }
+
+    /* ==========================================================
+       FACT ABOUT ME (trang 3) — thêm fact mới ở đây
+       Mỗi fact là 1 dòng nằm giữa 2 dấu ` `, nhớ có dấu phẩy ở cuối.
+       Muốn tô màu/in đậm 1 chữ thì dùng:  <b class="text-pink">chữ cần tô</b>
+       Số thứ tự tự động đánh theo thứ tự dòng.
+       ========================================================== */
+    const FACTS = [
+      `Tên thật của mình là <b class="text-pink">Nguyễn Dương Minh Nhật</b>`,
+      `Sinh Nhật mình là <b class="text-pink">12/09/2008</b> mặc dù mình cũng không hẳn thích sinh nhật lắm`,
+      `Mình biết vẽ nhưng mình không giỏi lắm, mình chỉ vẽ được những thứ đơn giản thôi`,
+      `Mình thích <b class="text-pink">văn thơ như Xuân Diệu</b> </b>`,
+      `Thích nghe nhạc MCK , hoặc bài nào chill như của 52hz, lâu lâu nng thì nghe nhạc tục tục của anh bình gold </b>`,
+      `T dâm ok </b>`,
+      `Waifu là Ahri trong lol, Violet Evergarden,... </b>`,
+      `Khá thích chơi game dòng soul, t bị khổ dâm ok </b>`,
+      `Cực kì sexjoke khá nhiều nên bạn nào theo nữ quyền thì có thể đấm vào mặt t đấy </b>`,
+      `Khá là đa tài, cái gì cũng làm được nhưng chỉ biết được 1 chút không hẳn giỏi 1 thứ gì đó </b>`,
+      `Maybe theo i nyc người mà t được dạy nhiều bài học nhất thì t bị ái kỷ cái tôi ngút trời redflag số một nha </b>`,
+      `T có thể làm mọi việc nhà nấu cơm, giặt đồ,bla bla T không thích người t thương đụng vào </b>`,
+      `Về chuyện tiền bạc t khá kĩ tính, nhưng với người thật sự thương thì nói thật NVDIA chi còn thua t </b>`,
+      `T khá là nhạy cảm với những người t thương, t có thể khóc vì 1 câu nói của người t thương, overthinking nữa </b>`,
+      ` :)) khá chiếm hữu, và thích người chiếm hữu t</b>`,
+      `T sẽ dê bạn ( người t thương )</b>`,
+      `Vẫn sẽ UPDATE từ từ nha</b>`,
+    ];  
+
+    (function renderFacts() {
+      const box = document.getElementById('factList');
+      FACTS.forEach((text, i) => {
+        const row = document.createElement('div');
+        row.className = 'glass-card rounded-2xl p-5 flex items-start gap-4 transition-all duration-300 hover:-translate-y-1';
+        row.innerHTML =
+          '<span class="shrink-0 w-9 h-9 rounded-full bg-pink/20 text-pink border border-pink/40 flex items-center justify-center font-extrabold text-sm">' + (i + 1) + '</span>' +
+          '<p class="text-lg font-medium text-cream pt-0.5 leading-relaxed">' + text + '</p>';
+        box.appendChild(row);
+      });
+    })();
+
+    /* ==========================================================
+       HIỆU ỨNG THƯ BAY (kiểu Violet Evergarden) — chỉ trang 3
+       Thư tung lên từ dưới màn hình rồi rơi lả tả xuống, kéo dài ~6 giây.
+       Chỉnh ở đây:
+       ========================================================== */
+    const LETTER_COUNT = 34;      // số lượng thư
+    const LETTER_SECONDS = 6.3;   // tổng thời gian hiệu ứng (giây)
+
+    const lCanvas = document.getElementById('letterCanvas');
+    const lCtx = lCanvas.getContext('2d');
+    let lW = 0, lH = 0, lRaf = null, lStart = 0, lLast = 0, letters = [];
+
+    function sizeLetterCanvas() {
+      const dpr = window.devicePixelRatio || 1;
+      lW = window.innerWidth; lH = window.innerHeight;
+      lCanvas.width = lW * dpr; lCanvas.height = lH * dpr;
+      lCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    sizeLetterCanvas();
+    window.addEventListener('resize', sizeLetterCanvas);
+    const EASTER_EGG_IMAGE = String.raw`E:\web\holdhand.jpg`;
+    let eggImg = null, eggReady = false;
+    (function loadEasterEgg() {
+      const src = EASTER_EGG_IMAGE.trim().replace(/\\/g, '/');
+      if (!src) return;
+      eggImg = new Image();
+      eggImg.onload = () => { eggReady = true; };
+      eggImg.src = src;
+    })();
+
+    // Ảnh rơi như 1 bức thư (khung trắng kiểu ảnh polaroid)
+    function makePhotoLetter() {
+      const L = makeLetter();
+      const sc = Math.max(0.7, Math.min(1.2, lW / 1200));
+      const r = Math.max(0.75, Math.min(1.5, eggImg.naturalHeight / eggImg.naturalWidth));
+      const iw = 58 * sc, ih = iw * r;
+      L.type = 'photo';
+      L.w = iw + 10;
+      L.h = ih + 10 + 14;
+      L.g = L.k * lH * 0.15;               // rơi chậm hơn 1 chút để dễ thấy
+      L.delay = 0.1 + Math.random() * 0.7;
+      return L;
+    }
+
+    function makeLetter() {
+      const k = 1.6;                                   // lực cản không khí
+      const vt = lH * (0.17 + Math.random() * 0.09);   // tốc độ rơi cuối (px/giây) — nhỏ = rơi lả tả
+      const sc = Math.max(0.7, Math.min(1.2, lW / 1200));
+      return {
+        type: Math.random() < 0.6 ? 'paper' : 'envelope',
+        w: (30 + Math.random() * 20) * sc,
+        x: lW * (0.08 + Math.random() * 0.84),
+        y: lH + 30 + Math.random() * 50,
+        vx: (Math.random() - 0.5) * lW * 0.3,
+        vy: -lH * (1.25 + Math.random() * 0.6),
+        k, g: k * vt,
+        delay: Math.random() * 0.5,
+        sway: Math.random() * Math.PI * 2,
+        swaySpeed: 1.6 + Math.random() * 1.6,
+        swayAmp: 40 + Math.random() * 60,
+        flip: Math.random() * Math.PI * 2,
+        flipSpeed: 2 + Math.random() * 3,
+        tilt: (Math.random() - 0.5) * 0.8,
+        seal: ['#ff9fc6', '#cdb6f5', '#7aa6e8'][Math.floor(Math.random() * 3)],
+        done: false
+      };
+    }
+
+    function drawLetter(L, alpha) {
+      const w = L.w, hgt = L.h || w * 1.28;
+      const c = Math.cos(L.flip);
+      const sx = Math.abs(c) < 0.08 ? 0.08 * (c < 0 ? -1 : 1) : c;   // lật mặt thư
+      lCtx.save();
+      lCtx.translate(L.x, L.y);
+      lCtx.rotate(L.tilt + Math.sin(L.sway * 0.9) * 0.6);
+      lCtx.scale(sx, 1);
+      lCtx.globalAlpha = alpha;
+      lCtx.shadowColor = 'rgba(255,255,255,0.55)';
+      lCtx.shadowBlur = 8;
+      lCtx.fillStyle = c >= 0 ? '#fffaf0' : '#efe5d6';                // mặt sau tối hơn
+      lCtx.strokeStyle = 'rgba(140,120,170,0.55)';
+      lCtx.lineWidth = 1;
+      lCtx.beginPath();
+      lCtx.rect(-w / 2, -hgt / 2, w, hgt);
+      lCtx.fill();
+      lCtx.shadowBlur = 0;
+      lCtx.stroke();
+
+      if (L.type === 'paper') {
+        lCtx.strokeStyle = 'rgba(150,130,180,0.55)';
+        for (let i = 0; i < 5; i++) {
+          const yy = -hgt / 2 + hgt * (0.2 + i * 0.15);
+          lCtx.beginPath();
+          lCtx.moveTo(-w * 0.36, yy);
+          lCtx.lineTo(i === 4 ? 0 : w * 0.36, yy);
+          lCtx.stroke();
+        }
+      } else if (L.type === 'photo') {
+        if (c >= 0) {                                                  // mặt trước: hiện ảnh
+          const ix = -w / 2 + 5, iy = -hgt / 2 + 5, iw = w - 10, ih = hgt - 5 - 14;
+          const nw = eggImg.naturalWidth, nh = eggImg.naturalHeight;
+          let sx0 = 0, sy0 = 0, sw = nw, sh = nh;
+          if (nh / nw > ih / iw) { sh = nw * ih / iw; sy0 = (nh - sh) / 2; }
+          else { sw = nh * iw / ih; sx0 = (nw - sw) / 2; }
+          lCtx.drawImage(eggImg, sx0, sy0, sw, sh, ix, iy, iw, ih);
+        }
+      } else {
+        lCtx.beginPath();                                              // nắp phong bì
+        lCtx.moveTo(-w / 2, -hgt / 2);
+        lCtx.lineTo(0, hgt * 0.08);
+        lCtx.lineTo(w / 2, -hgt / 2);
+        lCtx.stroke();
+        lCtx.beginPath();
+        lCtx.moveTo(-w / 2, hgt / 2);
+        lCtx.lineTo(-w * 0.12, hgt * 0.02);
+        lCtx.moveTo(w / 2, hgt / 2);
+        lCtx.lineTo(w * 0.12, hgt * 0.02);
+        lCtx.stroke();
+        lCtx.fillStyle = L.seal;                                       // dấu sáp
+        lCtx.beginPath();
+        lCtx.arc(0, hgt * 0.08, w * 0.11, 0, Math.PI * 2);
+        lCtx.fill();
+      }
+      lCtx.restore();
+    }
+
+    function letterFrame(now) {
+      const t = (now - lStart) / 1000;
+      const dt = Math.min((now - lLast) / 1000, 1 / 30);
+      lLast = now;
+      lCtx.clearRect(0, 0, lW, lH);
+
+      const fade = t < LETTER_SECONDS - 1.1 ? 1 : Math.max(0, 1 - (t - (LETTER_SECONDS - 1.1)) / 1.1);
+      let alive = 0;
+      letters.forEach((L) => {
+        if (L.done || t < L.delay) { if (!L.done) alive++; return; }
+        L.vy += (L.g - L.k * L.vy) * dt;
+        L.vx += (-L.k * L.vx) * dt;
+        L.sway += L.swaySpeed * dt;
+        const flutter = L.vy > 0 ? 1 : 0.3;                            // lúc rơi thì chao đảo mạnh hơn
+        L.x += (L.vx + Math.sin(L.sway) * L.swayAmp * flutter) * dt;
+        L.y += L.vy * dt;
+        L.flip += L.flipSpeed * dt;
+        if (L.vy > 0 && L.y > lH + 80) { L.done = true; return; }
+        alive++;
+        drawLetter(L, fade);
+      });
+
+      if (t < LETTER_SECONDS && alive > 0) {
+        lRaf = requestAnimationFrame(letterFrame);
+      } else {
+        stopLetters();
+      }
+    }
+
+    function startLetters() {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      stopLetters();
+      letters = Array.from({ length: LETTER_COUNT }, makeLetter);
+      if (eggReady) letters.push(makePhotoLetter());                   // easter egg: ảnh lẫn trong đám thư
+      lStart = lLast = performance.now();
+      lRaf = requestAnimationFrame(letterFrame);
+    }
+
+    function stopLetters() {
+      if (lRaf) cancelAnimationFrame(lRaf);
+      lRaf = null;
+      lCtx.clearRect(0, 0, lW, lH);
+    }
+
+    let currentPage = 0;
+    const totalPages = 4;
+
+    function switchPage(index) {
+      if (index < 0 || index >= totalPages) return;
+      const changed = index !== currentPage;
+      currentPage = index;
+
+      if (changed) sfxController.stopAll();
+
+      // Sao băng + âm thanh (~2s): chỉ khi chuyển qua trang 2
+      if (index === 1 && changed) {
+        playShootingStars();
+        sfxController.play('star');
+      } else {
+        clearShootingStars();
+      }
+
+      // Thư bay + tiếng giấy/thư: chỉ khi chuyển qua trang 3
+      if (index === 2 && changed) {
+        startLetters();
+        sfxController.play('letter');
+      } else if (index !== 2) {
+        stopLetters();
+      }
+
+      // Gió thổi + tiếng gió: chỉ khi chuyển qua trang 4 (Cosplay and Staff)
+      if (index === 3 && changed) {
+        startWind();
+        sfxController.play('wind');
+      } else if (index !== 3) {
+        stopWind();
+      }
+
+      // Hoa anh đào chỉ rơi ở trang 1
+      if (index === 0) startSakura(); else stopSakura();
+
+      // Quay về Home thì video nền chạy lại từ đầu
+      if (index === 0 && window.homeBgVideo) {
+        window.homeBgVideo.currentTime = 0;
+        window.homeBgVideo.play().catch(() => {});
+      }
+      
+      const track = document.getElementById('sliderTrack');
+      track.style.transform = `translateX(-${currentPage * (100 / totalPages)}%)`;
+
+      for (let i = 0; i < totalPages; i++) {
+        const desktopBtn = document.getElementById(`nav-btn-${i}`);
+        const mobileBtn = document.getElementById(`mob-nav-btn-${i}`);
+
+        if (i === currentPage) {
+          desktopBtn.className = "nav-link px-5 py-2 rounded-full text-base font-semibold transition-all duration-300 text-lilac bg-lilac/10 border border-lilac/30 shadow-[0_0_15px_rgba(205,182,245,0.25)]";
+          mobileBtn.className = "w-full text-left px-4 py-3 rounded-xl font-semibold transition-colors bg-lilac/20 text-lilac border border-lilac/30";
+        } else {
+          desktopBtn.className = "nav-link px-5 py-2 rounded-full text-base font-semibold transition-all duration-300 text-cream/70 hover:text-cream hover:bg-white/5 border border-transparent";
+          mobileBtn.className = "w-full text-left px-4 py-3 rounded-xl font-semibold transition-colors text-cream/80 hover:bg-lilac/10 hover:text-cream border border-transparent";
+        }
+      }
+    }
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      const hamburger = document.getElementById('hamburgerIcon');
+      const close = document.getElementById('closeIcon');
+      
+      if (menu.classList.contains('hidden')) {
+        menu.classList.remove('hidden');
+        menu.classList.add('flex');
+        hamburger.classList.add('hidden');
+        close.classList.remove('hidden');
+      } else {
+        menu.classList.add('hidden');
+        menu.classList.remove('flex');
+        hamburger.classList.remove('hidden');
+        close.classList.add('hidden');
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') {
+        switchPage((currentPage + 1) % totalPages);
+      } else if (e.key === 'ArrowLeft') {
+        switchPage((currentPage - 1 + totalPages) % totalPages);
+      }
+    });
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    const mainElement = document.querySelector('main');
+    mainElement.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, false);
+
+    mainElement.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, false);
+
+    function handleSwipe() {
+      const threshold = 50;
+      if (touchEndX < touchStartX - threshold) {
+        switchPage(Math.min(currentPage + 1, totalPages - 1));
+      }
+      if (touchEndX > touchStartX + threshold) {
+        switchPage(Math.max(currentPage - 1, 0));
+      }
+    }
+
+    /* Hiệu ứng bấm nút thả tim */
+    let petalsCount = 0;
+    function triggerSurprise() {
+      petalsCount++;
+      const counterContainer = document.getElementById('heartCounter');
+      const counter = document.getElementById('heartCount');
+      counter.innerText = petalsCount;
+      counterContainer.classList.remove('opacity-0');
+
+      const petalEl = document.createElement('div');
+      const HEARTS = ['💗', '💖', '💕', '💓', '❤️'];
+      petalEl.innerText = HEARTS[Math.floor(Math.random() * HEARTS.length)];
+      petalEl.className = 'fixed pointer-events-none text-2xl z-50 transition-all duration-1000 ease-out';
+      
+      const btn = document.getElementById('surpriseBtn');
+      const rect = btn.getBoundingClientRect();
+      petalEl.style.left = `${rect.left + rect.width / 2}px`;
+      petalEl.style.top = `${rect.top}px`;
+      document.body.appendChild(petalEl);
+
+      setTimeout(() => {
+        petalEl.style.transform = `translate(${(Math.random() - 0.5) * 120}px, -150px) rotate(${Math.random() * 360}deg) scale(1.4)`;
+        petalEl.style.opacity = '0';
+      }, 20);
+
+      setTimeout(() => {
+        petalEl.remove();
+      }, 1050);
+    }
+
+    /* Dynamic Sakura Canvas Animation Engine (Anime-style Petals) */
+    const canvas = document.getElementById('sakuraCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    class Petal {
+      constructor() {
+        this.reset();
+      }
+
+      reset() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * -height;
+        this.flower = Math.random() < 0.25;                 // 1/4 là nguyên bông hoa 5 cánh, còn lại là cánh lẻ
+        this.size = this.flower ? Math.random() * 7 + 9 : Math.random() * 8 + 8;
+        this.speedY = Math.random() * 1.4 + 0.8;
+        this.speedX = Math.random() * 1.0 - 0.5;
+        this.rotation = Math.random() * 360;
+        this.rotationSpeed = Math.random() * 2 - 1;
+        this.opacity = Math.random() * 0.5 + 0.4;
+        const colors = ['#ffb7c5', '#ff9fc6', '#ffd1dc', '#f3a4c5', '#cdb6f5'];
+        this.color = colors[Math.floor(Math.random() * colors.length)];
+        this.swing = Math.random() * 0.04 + 0.01;
+        this.swingStep = Math.random() * Math.PI * 2;
+      }
+
+      update() {
+        this.swingStep += this.swing;
+        this.x += this.speedX + Math.sin(this.swingStep) * 1.2;
+        this.y += this.speedY;
+        this.rotation += this.rotationSpeed;
+
+        if (this.y > height + 20 || this.x < -20 || this.x > width + 20) {
+          this.reset();
+          this.y = -10;
+        }
+      }
+
+      // Cánh anh đào: đầu cánh có khía hình chữ V như trong anime
+      petalPath(s) {
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.bezierCurveTo(-s * 1.1, -s * 0.4, -s * 1.0, -s * 1.8, -s * 0.18, -s * 2);
+        ctx.quadraticCurveTo(0, -s * 1.65, s * 0.18, -s * 2);
+        ctx.bezierCurveTo(s * 1.0, -s * 1.8, s * 1.1, -s * 0.4, 0, 0);
+        ctx.closePath();
+      }
+
+      draw() {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate((this.rotation * Math.PI) / 180);
+        ctx.globalAlpha = this.opacity;
+
+        const s = this.size * 0.5;
+        const grad = ctx.createLinearGradient(0, 0, 0, -s * 2);
+        grad.addColorStop(0, '#fff7fa');   // gốc cánh trắng hồng
+        grad.addColorStop(0.45, '#ffdbe6');
+        grad.addColorStop(1, this.color);  // đầu cánh hồng đậm hơn
+        ctx.fillStyle = grad;
+
+        if (this.flower) {
+          // nguyên bông: 5 cánh xoè quanh tâm + nhuỵ
+          for (let i = 0; i < 5; i++) {
+            ctx.save();
+            ctx.rotate((i * 72 * Math.PI) / 180);
+            this.petalPath(s * 0.95);
+            ctx.fill();
+            ctx.restore();
+          }
+          ctx.globalAlpha = Math.min(1, this.opacity + 0.2);
+          ctx.fillStyle = '#ff7fae';
+          ctx.beginPath();
+          ctx.arc(0, 0, s * 0.28, 0, Math.PI * 2);
+          ctx.fill();
+        } else {
+          // cánh lẻ
+          ctx.translate(0, s);
+          this.petalPath(s);
+          ctx.fill();
+        }
+
+        ctx.restore();
+      }
+    }
+
+    const petals = Array.from({ length: 60 }, () => new Petal());
+
+    // Hoa chỉ rơi ở trang 1 (Home). Sang trang khác thì mờ dần rồi dừng hẳn.
+    let sakuraRunning = false;
+    canvas.style.transition = 'opacity 0.6s ease';
+    canvas.style.opacity = 0;
+
+    function animateSakura() {
+      if (!sakuraRunning) return;
+      ctx.clearRect(0, 0, width, height);
+      petals.forEach((petal) => {
+        petal.update();
+        petal.draw();
+      });
+      requestAnimationFrame(animateSakura);
+    }
+
+    function startSakura() {
+      canvas.style.opacity = 1;
+      if (sakuraRunning) return;
+      sakuraRunning = true;
+      animateSakura();
+    }
+
+    function stopSakura() {
+      canvas.style.opacity = 0;
+      setTimeout(() => {
+        if (currentPage !== 0) {
+          sakuraRunning = false;
+          ctx.clearRect(0, 0, width, height);
+        }
+      }, 650);
+    }
+
+    window.onload = function() {
+      startSakura();
+    };
+  </script>
+</body>
+</html>
